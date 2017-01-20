@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">StudieVolg</string>
+    <string name="button1">Invoer</string>
+    <string name="button2">Uitvoer</string>
+    <string name="button3">Weergave #1</string>
+    <string name="button4">Weergave #2</string>
+
+    <string name="Modulecode">Modulecode</string>
+    <string name="ECTS">ECTS</string>
+    <string name="Cijfer">Cijfer</string>
+
+</resources>
