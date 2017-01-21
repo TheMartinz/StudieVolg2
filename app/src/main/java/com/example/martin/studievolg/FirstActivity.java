@@ -107,7 +107,7 @@ public class FirstActivity extends AppCompatActivity {
 
         // Even checken of dit goed binnen komt
         Context context = getApplicationContext();
-        CharSequence text = "Uit de DB komt :"+ects;       // Vraag de ects op
+        CharSequence text = "Uit de DB komt : " + modulecode + " " + ects + " " + cijfer;       // Vraag de ects op
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
