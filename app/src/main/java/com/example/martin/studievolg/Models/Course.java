@@ -1,18 +1,23 @@
 package com.example.martin.studievolg.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Martin on 20-1-2017.
  */
 
 public class Course {
 
+    @SerializedName("name")
     private String modulecode;
+    @SerializedName("ects")
     private String ects;
+    @SerializedName("grade")
     private String cijfer;
 
-    public Course (String m, String p, String k) {
+    public Course (String m, String e, String k) {
         this.modulecode= m;
-        this.ects= p;
+        this.ects= e;
         this.cijfer = k;
     }
 
@@ -20,12 +25,12 @@ public class Course {
         this.modulecode = m;
     }
 
-    public void setEcts (String k) {
-        this.ects = k;
+    public void setEcts (String e) {
+        this.ects = e;
     }
 
-    public void setCijfer(String p){
-        this.cijfer = p;
+    public void setCijfer(String k){
+        this.cijfer = k;
     }
 
     public String getEcts(){

@@ -1,11 +1,13 @@
 package com.example.martin.studievolg;
 
+import android.app.DownloadManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,9 @@ import android.widget.Toast;
 import com.example.martin.studievolg.Database.DatabaseHelper;
 import com.example.martin.studievolg.Database.DatabaseInfo;
 import com.example.martin.studievolg.Models.Course;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.martin.studievolg.R.id.editText;
 import static com.example.martin.studievolg.R.id.textView;
@@ -35,34 +40,29 @@ public class FirstActivity extends AppCompatActivity {
         buttonInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                zetDeCourseInDeDatabase();
-            }
-        });
-
-        buttonOutput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                getInputValues();
                 getCourseFromDB();
+
             }
         });
+
     }
-    public void getInputValues(View v) {
+
+    public void getInputValues() {
         // Modulecode
         EditText etModulecode = (EditText) findViewById(editText);
         String modulecode = etModulecode.getText().toString();
 
-        // Cijfer
-        EditText etCijfer = (EditText) findViewById(R.id.editText2);
-        String cijfer = etCijfer.getText().toString();
-
         // ECTS
-        EditText etEcts = (EditText) findViewById(R.id.editText3);
+        EditText etEcts = (EditText) findViewById(R.id.editText2);
         String ects = etEcts.getText().toString();
 
+        // Cijfer
+        EditText etCijfer = (EditText) findViewById(R.id.editText3);
+        String cijfer = etCijfer.getText().toString();
+
         // Vul het model Course met de informatie van de gebruiker
-        course1 = new Course(modulecode, cijfer, ects);
+        course1 = new Course(modulecode, ects, cijfer);
 
 /*
         Context context = getApplicationContext();
@@ -79,9 +79,8 @@ public class FirstActivity extends AppCompatActivity {
 
     }
 
-    private void zetDeCourseInDeDatabase() {
+    public boolean zetDeCourseInDeDatabase() {
         dbHelper = DatabaseHelper.getHelper(this);
-
 
         ContentValues values = new ContentValues();
         values.put(DatabaseInfo.CourseColumn.MODULECODE, course1.getModulecode());
@@ -90,6 +89,7 @@ public class FirstActivity extends AppCompatActivity {
 
         // INSERT dit values object in DE (ZELFGEMAAKTE) RIJ COURSE,
         dbHelper.insert(DatabaseInfo.CourseTables.COURSETABLE, null, values);
+        return true;
 
     }
 
@@ -107,7 +107,7 @@ public class FirstActivity extends AppCompatActivity {
 
         // Even checken of dit goed binnen komt
         Context context = getApplicationContext();
-        CharSequence text = "Uit de DB komt :"+ects;       // Vraag de ects op
+        CharSequence text = "Uit de DB komt : " + modulecode + " " + ects + " " + cijfer;       // Vraag de ects op
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
