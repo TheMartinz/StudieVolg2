@@ -14,5 +14,6 @@ public class DatabaseInfo {
         public static final String MODULECODE  = "modulecode";	// VASTE WAARDES
         public static final String ECTS = "ects";	// NAAM VAN DE KOLOMMEN
         public static final String CIJFER = "cijfer";	// FINAL !
+        public static final String PERIODE = "periode";
     }
 }

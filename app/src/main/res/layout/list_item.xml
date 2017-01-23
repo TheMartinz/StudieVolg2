@@ -15,6 +15,17 @@
         android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
+        android:id="@+id/periode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
         android:id="@+id/ects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

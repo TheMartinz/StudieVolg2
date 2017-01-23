@@ -35,7 +35,6 @@ public class FirstActivity extends AppCompatActivity {
         setContentView(R.layout.activity_first);
 
         Button buttonInput = (Button) findViewById(R.id.buttonInput);
-        Button buttonOutput = (Button) findViewById(R.id.buttonOutput);
 
         buttonInput.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +60,12 @@ public class FirstActivity extends AppCompatActivity {
         EditText etCijfer = (EditText) findViewById(R.id.editText3);
         String cijfer = etCijfer.getText().toString();
 
+        // Periode
+        EditText etPeriode = (EditText) findViewById(R.id.editText4);
+        String periode = etCijfer.getText().toString();
+
         // Vul het model Course met de informatie van de gebruiker
-        course1 = new Course(modulecode, ects, cijfer);
+        course1 = new Course(modulecode, ects, cijfer, periode);
 
 /*
         Context context = getApplicationContext();
@@ -86,6 +89,7 @@ public class FirstActivity extends AppCompatActivity {
         values.put(DatabaseInfo.CourseColumn.MODULECODE, course1.getModulecode());
         values.put(DatabaseInfo.CourseColumn.CIJFER, course1.getCijfer());
         values.put(DatabaseInfo.CourseColumn.ECTS, course1.getEcts());
+        values.put(DatabaseInfo.CourseColumn.PERIODE, course1.getPeriode());
 
         // INSERT dit values object in DE (ZELFGEMAAKTE) RIJ COURSE,
         dbHelper.insert(DatabaseInfo.CourseTables.COURSETABLE, null, values);
@@ -102,8 +106,9 @@ public class FirstActivity extends AppCompatActivity {
 
         // Haalt de name uit de resultset
         String modulecode = (String) rs.getString(rs.getColumnIndex("modulecode"));
-        String cijfer = (String) rs.getString(rs.getColumnIndex("cijfer"));
         String ects = (String) rs.getString(rs.getColumnIndex("ects"));
+        String cijfer = (String) rs.getString(rs.getColumnIndex("cijfer"));
+        String periode = (String) rs.getString(rs.getColumnIndex("periode"));
 
         // Even checken of dit goed binnen komt
         Context context = getApplicationContext();
@@ -113,7 +118,7 @@ public class FirstActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();                               // Print de ects af
 
-        return new Course(modulecode, cijfer, ects);
+        return new Course(modulecode, ects, cijfer, periode);
     }
 
 }

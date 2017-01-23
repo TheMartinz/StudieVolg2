@@ -41,20 +41,22 @@
         android:layout_alignStart="@+id/editText2"
         android:id="@+id/editText3" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Periode"
+        android:ems="10"
+        android:layout_below="@+id/editText3"
+        android:layout_alignStart="@+id/editText3"
+        android:id="@+id/editText4" />
+
     <Button
         android:text="Invoer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:id="@+id/buttonInput"
+        android:layout_below="@+id/editText4"
         android:layout_centerHorizontal="true"
-        android:id="@+id/buttonInput" />
-
-    <Button
-        android:text="Uitvoer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonInput"
-        android:layout_alignStart="@+id/buttonInput"
-        android:layout_marginTop="39dp"
-        android:id="@+id/buttonOutput" />
+        android:layout_marginTop="18dp" />
 </RelativeLayout>

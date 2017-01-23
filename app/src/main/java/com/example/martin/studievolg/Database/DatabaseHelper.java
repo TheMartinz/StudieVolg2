@@ -37,7 +37,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 DatabaseInfo.CourseColumn.MODULECODE + " TEXT," +
                 DatabaseInfo.CourseColumn.ECTS + " TEXT," +
-                DatabaseInfo.CourseColumn.CIJFER + " TEXT);"
+                DatabaseInfo.CourseColumn.CIJFER + " TEXT," +
+                DatabaseInfo.CourseColumn.PERIODE + " TEXT);"
         );
     }
     // CREATE TABLE CarTable (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, ects TEXT, grade TEXT);

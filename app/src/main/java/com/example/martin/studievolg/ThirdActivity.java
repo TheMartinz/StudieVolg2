@@ -1,5 +1,6 @@
 package com.example.martin.studievolg;
 
+import android.content.ContentValues;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.martin.studievolg.Database.DatabaseHelper;
+import com.example.martin.studievolg.Database.DatabaseInfo;
 import com.example.martin.studievolg.Gson.RecyclerViewAdapter;
 import com.example.martin.studievolg.Models.Course;
 import com.google.gson.Gson;
@@ -23,10 +26,12 @@ import java.util.List;
 
 public class ThirdActivity extends AppCompatActivity {
 
-    private final String TAG = "MainActivity";
+    private final String TAG = "ThirdActivity";
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private RecyclerViewAdapter adapter;
+    private DatabaseHelper dbHelper;
+    List<Course> posts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,4 +68,18 @@ public class ThirdActivity extends AppCompatActivity {
         });
         queue.add(stringRequest);
     }
+
+/*    public boolean zetDeCourseInDeDatabase() {
+        dbHelper = DatabaseHelper.getHelper(this);
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseInfo.CourseColumn.MODULECODE, posts.getModulecode());
+        values.put(DatabaseInfo.CourseColumn.ECTS, course1.getEcts());
+        values.put(DatabaseInfo.CourseColumn.CIJFER, course1.getCijfer());
+
+        // INSERT dit values object in DE (ZELFGEMAAKTE) RIJ COURSE,
+        dbHelper.insert(DatabaseInfo.CourseTables.COURSETABLE, null, values);
+        return true;
+
+    }*/
 }

@@ -15,6 +15,7 @@ public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View
     public TextView name;
     public TextView ects;
     public TextView grade;
+    public TextView periode;
     public RecyclerViewHolders(View itemView) {
 
         super(itemView);
@@ -22,6 +23,7 @@ public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View
         name = (TextView)itemView.findViewById(R.id.modulecode);
         ects = (TextView)itemView.findViewById(R.id.ects);
         grade = (TextView)itemView.findViewById(R.id.cijfer);
+        periode = (TextView)itemView.findViewById(R.id.periode);
     }
 
     @Override
