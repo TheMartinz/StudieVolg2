@@ -35,7 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         holder.name.setText("Modulecode: " + itemList.get(position).getModulecode());
         holder.ects.setText("Ects: " + itemList.get(position).getEcts());
         holder.grade.setText("Cijfer: " + itemList.get(position).getCijfer());
-        holder.periode.setText("Periode: " + itemList.get(position).getCijfer());
+        holder.periode.setText("Periode: " + itemList.get(position).getPeriode());
     }
 
     @Override

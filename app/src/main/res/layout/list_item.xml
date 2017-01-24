@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:layout_marginTop="10dp"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"/>
 
@@ -21,7 +21,6 @@
         android:text="New Text"
         android:layout_marginTop="10dp"
         android:textStyle="bold"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textColor="@color/colorPrimaryDark"/>
 
@@ -32,7 +31,6 @@
         android:text="New Text"
         android:textColor="#000"
         android:layout_below="@+id/modulecode"
-        android:layout_alignLeft="@+id/modulecode"
         android:layout_alignStart="@+id/modulecode"
         android:layout_marginTop="20dp" />
 
@@ -43,6 +41,5 @@
         android:text="New Text"
         android:textColor="#000"
         android:layout_alignTop="@+id/ects"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

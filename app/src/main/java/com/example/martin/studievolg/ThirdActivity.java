@@ -1,11 +1,14 @@
 package com.example.martin.studievolg;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,7 +34,7 @@ public class ThirdActivity extends AppCompatActivity {
     private LinearLayoutManager layoutManager;
     private RecyclerViewAdapter adapter;
     private DatabaseHelper dbHelper;
-    List<Course> posts;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,17 +72,5 @@ public class ThirdActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-/*    public boolean zetDeCourseInDeDatabase() {
-        dbHelper = DatabaseHelper.getHelper(this);
 
-        ContentValues values = new ContentValues();
-        values.put(DatabaseInfo.CourseColumn.MODULECODE, posts.getModulecode());
-        values.put(DatabaseInfo.CourseColumn.ECTS, course1.getEcts());
-        values.put(DatabaseInfo.CourseColumn.CIJFER, course1.getCijfer());
-
-        // INSERT dit values object in DE (ZELFGEMAAKTE) RIJ COURSE,
-        dbHelper.insert(DatabaseInfo.CourseTables.COURSETABLE, null, values);
-        return true;
-
-    }*/
 }

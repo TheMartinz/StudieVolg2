@@ -15,8 +15,9 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
- * Created by Brandon on 10-Jan-16.
+ * Created by Martin on 23-1-2017.
  */
+
 public class GsonRequest<T> extends Request<T> {
     private final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
     private final Class<T> mClazz;
@@ -76,4 +77,3 @@ public class GsonRequest<T> extends Request<T> {
         }
     }// end parseNetwResp
 } // end class
-

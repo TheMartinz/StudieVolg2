@@ -17,11 +17,11 @@ import java.util.List;
 public class Course {
 
 
-    @SerializedName("name")
+    @SerializedName("modulecode")
     private String modulecode;
     @SerializedName("ects")
     private String ects;
-    @SerializedName("grade")
+    @SerializedName("cijfer")
     private String cijfer;
     @SerializedName("periode")
     private String periode;
@@ -32,6 +32,8 @@ public class Course {
         this.cijfer = k;
         this.periode = p;
     }
+
+    public Course () {  }
 
     public void setModulecode(String m){
         this.modulecode = m;

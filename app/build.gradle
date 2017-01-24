@@ -14,8 +14,8 @@ android {
 
     repositories {
         mavenCentral()
-        maven { url "https://oss.sonatype.org/content/repositories/shapshots/"}
         maven { url "https://jitpack.io"}
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 
     buildTypes {
@@ -34,6 +34,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:recyclerview-v7:24.2.1'  // Required for Recycle Lijst
+    compile 'com.android.support:design:24.2.1'
     compile 'com.google.code.gson:gson:2.3.1'  // zet JSON in goede classes
     compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
 }

@@ -59,4 +59,11 @@
         android:layout_below="@+id/editText4"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/buttonInput"
+        android:layout_marginTop="14dp"
+        android:id="@+id/my_list_view2"/>
 </RelativeLayout>

@@ -1,33 +1,31 @@
 package com.example.martin.studievolg;
 
-import android.app.DownloadManager;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.martin.studievolg.Database.DatabaseHelper;
 import com.example.martin.studievolg.Database.DatabaseInfo;
 import com.example.martin.studievolg.Models.Course;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.martin.studievolg.R.id.editText;
-import static com.example.martin.studievolg.R.id.textView;
 
 public class FirstActivity extends AppCompatActivity {
 
     Course course1;
-    DatabaseHelper dbHelper;
+    private DatabaseHelper dbHelper;
+    private ListView mListView;
+    private List<Course> courseModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +33,22 @@ public class FirstActivity extends AppCompatActivity {
         setContentView(R.layout.activity_first);
 
         Button buttonInput = (Button) findViewById(R.id.buttonInput);
+        getInputValues();
 
         buttonInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getInputValues();
-                getCourseFromDB();
 
             }
         });
+        //TODO de gegevens die ingevoerd worden moeten ingevuld worden in de locale database zodat bij thirdactivity de geupdate versie staat
+
+        //TODO aantal behaalde ects laten zien
+        //TODO misschien graphic iets
 
     }
+
 
     public void getInputValues() {
         // Modulecode
@@ -81,6 +84,7 @@ public class FirstActivity extends AppCompatActivity {
         Course course1 = getCourseFromDB();
 
     }
+
 
     public boolean zetDeCourseInDeDatabase() {
         dbHelper = DatabaseHelper.getHelper(this);
