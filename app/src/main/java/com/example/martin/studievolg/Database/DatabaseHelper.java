@@ -35,10 +35,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + DatabaseInfo.CourseTables.COURSETABLE + " (" +
                 BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                DatabaseInfo.CourseColumn.MODULECODE + " TEXT," +
+                DatabaseInfo.CourseColumn.NAME + " TEXT," +
                 DatabaseInfo.CourseColumn.ECTS + " TEXT," +
-                DatabaseInfo.CourseColumn.CIJFER + " TEXT," +
-                DatabaseInfo.CourseColumn.PERIODE + " TEXT);"
+                DatabaseInfo.CourseColumn.GRADE + " TEXT," +
+                DatabaseInfo.CourseColumn.PERIOD + " TEXT);"
         );
     }
     // CREATE TABLE CarTable (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, ects TEXT, grade TEXT);
@@ -57,8 +57,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         mSQLDB.insert(table, nullColumnHack, values);
     }
 
-    public Cursor query(String table, String[] columns, String selection, String[] selectArgs, String groupBy, String having, String orderBy){
+    public Cursor query(String table, String[] columns, String selection, String[] selectArgs, String groupBy, String having, String orderBy) {
         return mSQLDB.query(table, columns, selection, selectArgs, groupBy, having, orderBy);
+    }
+
+    public void update(String table, ContentValues values, String whereClause, String[] whereArgs) {
+        mSQLDB.update(table, values, whereClause, whereArgs);
     }
 
 }//end class

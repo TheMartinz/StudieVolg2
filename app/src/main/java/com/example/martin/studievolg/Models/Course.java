@@ -16,14 +16,9 @@ import java.util.List;
 
 public class Course {
 
-
-    @SerializedName("modulecode")
     private String modulecode;
-    @SerializedName("ects")
     private String ects;
-    @SerializedName("cijfer")
     private String cijfer;
-    @SerializedName("periode")
     private String periode;
 
     public Course (String m, String e, String k, String p) {
@@ -32,8 +27,6 @@ public class Course {
         this.cijfer = k;
         this.periode = p;
     }
-
-    public Course () {  }
 
     public void setModulecode(String m){
         this.modulecode = m;
@@ -50,18 +43,18 @@ public class Course {
     public void setPeriode(String p) { this.periode = p;}
 
     public String getModulecode(){
-        return this.modulecode;
+        return modulecode;
     }
 
     public String getEcts(){
-        return this.ects;
+        return ects;
     }
 
     public String getCijfer(){
-        return this.cijfer;
+        return cijfer;
     }
 
-    public String getPeriode() { return this.periode;}
+    public String getPeriode() { return periode;}
 
     @Override
     public String toString() {

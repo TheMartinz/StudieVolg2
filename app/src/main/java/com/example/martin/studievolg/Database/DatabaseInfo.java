@@ -11,9 +11,9 @@ public class DatabaseInfo {
     }
 
     public class CourseColumn {
-        public static final String MODULECODE  = "modulecode";	// VASTE WAARDES
+        public static final String NAME  = "modulecode";	// VASTE WAARDES
         public static final String ECTS = "ects";	// NAAM VAN DE KOLOMMEN
-        public static final String CIJFER = "cijfer";	// FINAL !
-        public static final String PERIODE = "periode";
+        public static final String GRADE = "cijfer";	// FINAL !
+        public static final String PERIOD = "periode";
     }
 }

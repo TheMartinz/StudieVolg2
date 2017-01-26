@@ -20,27 +20,20 @@
         android:text="@string/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/button1"
+        android:layout_alignTop="@+id/editText5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Naam"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:layout_marginTop="28dp"
         android:layout_below="@+id/textView"
-        android:id="@+id/button1" />
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:text="@string/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:id="@+id/button2" />
-
-    <Button
-        android:text="@string/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:id="@+id/button3" />
-
-    <Button
-        android:text="@string/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
-        android:id="@+id/button4" />
 </RelativeLayout>

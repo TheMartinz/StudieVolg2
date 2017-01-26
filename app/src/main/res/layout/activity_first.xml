@@ -10,60 +10,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.martin.studievolg.FirstActivity">
 
-    <EditText
+    <Button
+        android:text="Weergave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/Modulecode"
-        android:ems="10"
+        android:layout_below="@+id/button3"
+        android:layout_alignStart="@+id/button3"
+        android:id="@+id/button2" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:id="@+id/editText" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/ECTS"
-        android:ems="10"
-        android:layout_below="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:id="@+id/editText2" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/Cijfer"
-        android:ems="10"
-        android:layout_below="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:id="@+id/editText3" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Periode"
-        android:ems="10"
-        android:layout_below="@+id/editText3"
-        android:layout_alignStart="@+id/editText3"
-        android:id="@+id/editText4" />
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView2" />
 
     <Button
-        android:text="Invoer"
+        android:text="Modules"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonInput"
-        android:layout_below="@+id/editText4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp" />
+        android:id="@+id/button3"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/buttonInput"
-        android:layout_marginTop="14dp"
-        android:id="@+id/my_list_view2"/>
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginTop="13dp"
+        android:id="@+id/textView3" />
+
 </RelativeLayout>

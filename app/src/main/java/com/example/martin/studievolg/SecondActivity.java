@@ -84,10 +84,10 @@ public class SecondActivity extends AppCompatActivity {
         // putting all received classes in my database.
         for (Course cm : subjects) {
             ContentValues cv = new ContentValues();
-            cv.put(DatabaseInfo.CourseColumn.MODULECODE, cm.getModulecode());
+            cv.put(DatabaseInfo.CourseColumn.NAME, cm.getModulecode());
             cv.put(DatabaseInfo.CourseColumn.ECTS, cm.getEcts());
-            cv.put(DatabaseInfo.CourseColumn.CIJFER, cm.getCijfer());
-            cv.put(DatabaseInfo.CourseColumn.PERIODE , cm.getPeriode());
+            cv.put(DatabaseInfo.CourseColumn.GRADE, cm.getCijfer());
+            cv.put(DatabaseInfo.CourseColumn.PERIOD , cm.getPeriode());
             dbHelper.insert(DatabaseInfo.CourseTables.COURSETABLE, null, cv);
         }
         Toast.makeText(getApplicationContext(), "Added to database", Toast.LENGTH_SHORT).show();
