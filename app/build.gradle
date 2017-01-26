@@ -38,5 +38,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'  // zet JSON in goede classes
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
-    compile "com.androidplot:androidplot-core:1.4.1"
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
 }

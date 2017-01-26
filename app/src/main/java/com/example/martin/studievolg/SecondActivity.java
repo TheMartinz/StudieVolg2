@@ -17,34 +17,111 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.Cache;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.androidplot.pie.PieChart;
-import com.androidplot.pie.PieRenderer;
-import com.androidplot.pie.Segment;
-import com.androidplot.pie.SegmentFormatter;
-import com.androidplot.xy.XYPlot;
+
 import com.example.martin.studievolg.Database.DatabaseHelper;
 import com.example.martin.studievolg.Database.DatabaseInfo;
 import com.example.martin.studievolg.Gson.GsonRequest;
 import com.example.martin.studievolg.Gson.VolleyHelper;
 import com.example.martin.studievolg.Models.Course;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SecondActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
-    public PieChart pie;
-
+    public static String TAG = "SecondActivity";
+    public static int behaaldeEcts = 0;
+    private PieChart pie;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
+        pie = (PieChart) findViewById(R.id.idpiechart);
+        pie.setRotationEnabled(true);
+        pie.setHoleRadius(25f);
+        pie.setCenterText("ECTS");
+        pie.setCenterTextSize(10);
+        pie.setDrawEntryLabels(true);
+        pie.setTransparentCircleAlpha(0);
+
+
+        final DatabaseHelper dbHelper = DatabaseHelper.getHelper(getApplicationContext());
+
+        Cursor getCourse = dbHelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, "grade>=?", new String[]{"5.5"}, null, null, null);
+
+        int count = 0;
+        getCourse.moveToFirst();
+        while (!getCourse.isAfterLast()) {
+            int ectsAlles = getCourse.getInt(getCourse.getColumnIndex("ects"));
+            count = count + ectsAlles;
+            getCourse.moveToNext();
+        }
+
+        Cursor rsCourseMax = dbHelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, "grade=?", new String[]{"10"}, null, null, null);
+
+        rsCourseMax.moveToFirst();
+
+        while(!rsCourseMax.isAfterLast()) {
+            int ects = rsCourseMax.getInt(rsCourseMax.getColumnIndex("ects"));
+            count = count + ects;
+            rsCourseMax.moveToNext();
+        }
+
+
+        Cursor getWaarde = dbHelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, "grade=?", new String[]{"default"}, null, null, null);
+        getWaarde.moveToFirst();
+        while (!getWaarde.isAfterLast()) {
+            int ectsWaarde = getWaarde.getInt(rsCourseMax.getColumnIndex("ects"));
+            count = count - ectsWaarde;
+            getWaarde.moveToNext();
+        }
+
+        Cursor getWaardeO = dbHelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, "grade=?", new String[]{"O"}, null, null, null);
+        getWaardeO.moveToFirst();
+        while (!getWaardeO.isAfterLast()) {
+            int ectsWaardeO = getWaardeO.getInt(rsCourseMax.getColumnIndex("ects"));
+            count = count - ectsWaardeO;
+            getWaardeO.moveToNext();
+        }
+
+        setData(count);
+
+
+    }
+
+    private void setData(int ects) {
+        behaaldeEcts = ects;
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(Color.GREEN);
+        colors.add(Color.MAGENTA);
+
+
+
+        List<PieEntry> waardes = new ArrayList<>();
+        waardes.add(new PieEntry(ects, "Behaalde ECTS"));
+        waardes.add(new PieEntry(60 - behaaldeEcts, "Nog te halen ECTS"));
+
+        PieDataSet set = new PieDataSet(waardes, "");
+        PieData data = new PieData(set);
+        set.setColors(colors);
+        set.setSliceSpace(2);
+        pie.setData(data);
+        pie.invalidate();
 
 
 

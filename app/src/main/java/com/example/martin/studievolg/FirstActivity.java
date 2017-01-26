@@ -34,12 +34,20 @@ public class FirstActivity extends AppCompatActivity {
         DatabaseHelper dbHelper = DatabaseHelper.getHelper(getApplicationContext());
         dbHelper.open();
 
-
         Button modules = (Button) findViewById(R.id.button3);
         modules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FirstActivity.this, ListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button weergave = (Button) findViewById(R.id.button2);
+        weergave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
                 startActivity(intent);
             }
         });
