@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,7 +23,7 @@ public class EditCijfer extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Cijfer:");
+        builder.setTitle("grade:");
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
@@ -32,24 +31,24 @@ public class EditCijfer extends DialogFragment {
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(inflater.inflate(R.layout.edit_cijfer_fragment, null))
                 // Add action buttons
-                .setPositiveButton("Aanpassen", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Wijzigen", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
                         EditText editText = (EditText) getDialog().findViewById(R.id.editText);
                         String cijfer = editText.getText().toString();
-                        if(Integer.parseInt(cijfer) < 10) {
+                        if(Double.parseDouble(cijfer) > 10) {
                             Toast.makeText(getActivity(), "Dat is geen geldig cijfer!", Toast.LENGTH_SHORT).show();
                         }
-                        else if(Integer.parseInt(cijfer) > 5.4) {
+                        else if(Double.parseDouble(cijfer) > 5.4 && Double.parseDouble(cijfer) < 10) {
                             Toast.makeText(getActivity(), "Voldoende", Toast.LENGTH_SHORT).show();
-                            cijferInvoeren("V");
+                            cijferInvoeren(cijfer);
                         }
-                        else if(Integer.parseInt(cijfer) < 5.5) {
+                        else if(Double.parseDouble(cijfer) < 5.5 && Double.parseDouble(cijfer) < 10) {
                             Toast.makeText(getActivity(), "Onvoldoende", Toast.LENGTH_SHORT).show();
-                            cijferInvoeren("O");
+                            cijferInvoeren(cijfer);
                         }
-                        else {
+                        /*else {
                             if (cijfer.length() == 0) {
                                 Toast.makeText(getActivity(), "fout", Toast.LENGTH_SHORT).show();
                             } else if (cijfer.length() == 1) {
@@ -67,10 +66,10 @@ public class EditCijfer extends DialogFragment {
                                     Toast.makeText(getActivity(), "fout", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                        }
+                        }*/
                     }
                 })
-                .setNegativeButton("stop", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         EditCijfer.this.getDialog().cancel();
                     }

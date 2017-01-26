@@ -65,4 +65,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         mSQLDB.update(table, values, whereClause, whereArgs);
     }
 
+    public void open() {
+        mInstance.getWritableDatabase();
+    }
+
 }//end class

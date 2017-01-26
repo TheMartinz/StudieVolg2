@@ -10,17 +10,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+
 import com.example.martin.studievolg.Database.DatabaseHelper;
 import com.example.martin.studievolg.Database.DatabaseInfo;
 import com.example.martin.studievolg.Gson.GsonRequest;
 import com.example.martin.studievolg.Gson.VolleyHelper;
 import com.example.martin.studievolg.Models.Course;
+
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
 import java.util.List;
 
 /**
@@ -33,12 +37,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
 
-        SharedPreferences sharedPref = getSharedPreferences("login", MODE_PRIVATE);
-        final String loggedin = sharedPref.getString("login", "login");
+        final String loggedin = pullSharedPref();
 
         if (!loggedin.equals("Correct")) {
             requestSubjects();
@@ -56,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 finish();
             }
-        }, 5000);
+        }, 3000);
     }
 
     private void requestSubjects(){
@@ -111,10 +111,10 @@ public class SplashActivity extends AppCompatActivity {
         // iterate via "for loop"
         for (int i = 0; i < subjects.size(); i++) {
             //DE NAAM, ECTS, CIJFER EN DE PERIODE  PER COURSE UIT DE DATABASE OPHALEN
-            String name = String.valueOf(subjects.get(i).getModulecode());
+            String name = String.valueOf(subjects.get(i).getName());
             String ects = String.valueOf(subjects.get(i).getEcts());
             String grade = "default";
-            String period = String.valueOf(subjects.get(i).getPeriode());
+            String period = String.valueOf(subjects.get(i).getPeriod());
 
 
             // Now check if this id already exists in the array
@@ -133,13 +133,24 @@ public class SplashActivity extends AppCompatActivity {
                 dbHelper.insert(DatabaseInfo.CourseTables.COURSETABLE, null, values);
             }
         }
-        Toast.makeText(getApplicationContext(), "Added to database", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Loaded Courses into database", Toast.LENGTH_SHORT).show();
 
+    }
+
+    private String pullSharedPref() {
+        SharedPreferences sharedPref = getSharedPreferences("login", MODE_PRIVATE);
+
+        String key = "login";
+        String loggedin = sharedPref.getString("login", key);
+        Log.d("login: ", key);
+        return loggedin;
     }
 
     private void processRequestError(VolleyError error){
-        // WAT ZULLEN WE HIERMEE DOEN ?? - niets..
+        Log.d("cant pull json: ", "check je code");
     }
+
+
 
 
 }

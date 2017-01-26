@@ -51,7 +51,7 @@ public class ThirdActivity extends AppCompatActivity {
 
     private void requestJsonObject(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://www.mverhaagen.nl/subject_lijst.json";
+        String url ="http://fuujokan.nl/subject_lijst.json";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

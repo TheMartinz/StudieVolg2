@@ -26,17 +26,14 @@ import static com.example.martin.studievolg.R.id.editText;
 
 public class FirstActivity extends AppCompatActivity {
 
-    Course course1;
-    private DatabaseHelper dbHelper;
-    private ListView mListView;
-    private List<Course> courseModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-        DatabaseHelper dbhelper = DatabaseHelper.getHelper(getApplicationContext());
-        int count = 0;
+        DatabaseHelper dbHelper = DatabaseHelper.getHelper(getApplicationContext());
+        dbHelper.open();
+
 
         Button modules = (Button) findViewById(R.id.button3);
         modules.setOnClickListener(new View.OnClickListener() {
@@ -50,11 +47,13 @@ public class FirstActivity extends AppCompatActivity {
 
         SharedPreferences sharedpref = getSharedPreferences("username", Context.MODE_PRIVATE);
         String name = sharedpref.getString("username", "");
-        gebruikersnaam.setText("hallo " + name);
+        gebruikersnaam.setText("Hallo " + name);
 
 
         TextView ectsTotaal = (TextView) findViewById(R.id.textView3);
         Cursor getCourse = dbHelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, "grade>=?", new String[]{"5.5"}, null, null, null);
+
+        int count = 0;
         getCourse.moveToFirst();
         while (!getCourse.isAfterLast()) {
             int ectsAlles = getCourse.getInt(getCourse.getColumnIndex("ects"));
@@ -62,20 +61,41 @@ public class FirstActivity extends AppCompatActivity {
             getCourse.moveToNext();
         }
 
+        Cursor rsCourseMax = dbHelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, "grade=?", new String[]{"10"}, null, null, null);
 
-        Cursor getWaarde = dbhelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, "grade=?", new String[]{"default"}, null, null, null);
+        rsCourseMax.moveToFirst();
+
+        while(!rsCourseMax.isAfterLast()) {
+            int ects = rsCourseMax.getInt(rsCourseMax.getColumnIndex("ects"));
+            count = count + ects;
+            rsCourseMax.moveToNext();
+        }
+
+
+        Cursor getWaarde = dbHelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, "grade=?", new String[]{"default"}, null, null, null);
         getWaarde.moveToFirst();
         while (!getWaarde.isAfterLast()) {
-            int ectsWaarde = getWaarde.getInt(getWaarde.getColumnIndex("ects"));
-            count = count + ectsWaarde;
+            int ectsWaarde = getWaarde.getInt(rsCourseMax.getColumnIndex("ects"));
+            count = count - ectsWaarde;
             getWaarde.moveToNext();
         }
 
+        Cursor getWaardeO = dbHelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, "grade=?", new String[]{"O"}, null, null, null);
+        getWaardeO.moveToFirst();
+        while (!getWaardeO.isAfterLast()) {
+            int ectsWaardeO = getWaardeO.getInt(rsCourseMax.getColumnIndex("ects"));
+            count = count - ectsWaardeO;
+            getWaardeO.moveToNext();
+        }
+
+        assert ectsTotaal != null;
         ectsTotaal.setText("Je hebt " + String.valueOf(count + " ECTS"));
 
 
 
     }
+
+
 
 
 

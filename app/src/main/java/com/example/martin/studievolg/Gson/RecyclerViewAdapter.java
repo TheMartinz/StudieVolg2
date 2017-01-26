@@ -32,10 +32,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerViewHolders holder, int position) {
-        holder.name.setText("Modulecode: " + itemList.get(position).getModulecode());
+        holder.name.setText("Modulecode: " + itemList.get(position).getName());
         holder.ects.setText("Ects: " + itemList.get(position).getEcts());
-        holder.grade.setText("Cijfer: " + itemList.get(position).getCijfer());
-        holder.periode.setText("Periode: " + itemList.get(position).getPeriode());
+        holder.grade.setText("Cijfer: " + itemList.get(position).getGrade());
+        holder.periode.setText("Periode: " + itemList.get(position).getPeriod());
     }
 
     @Override

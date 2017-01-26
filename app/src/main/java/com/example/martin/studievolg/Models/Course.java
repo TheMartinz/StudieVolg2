@@ -16,49 +16,49 @@ import java.util.List;
 
 public class Course {
 
-    private String modulecode;
-    private String ects;
-    private String cijfer;
-    private String periode;
+    public String name;
+    public String ects;
+    public String grade;
+    public String period;
 
     public Course (String m, String e, String k, String p) {
-        this.modulecode= m;
+        this.name= m;
         this.ects= e;
-        this.cijfer = k;
-        this.periode = p;
+        this.grade = k;
+        this.period = p;
     }
 
-    public void setModulecode(String m){
-        this.modulecode = m;
+    public void setName(String m){
+        this.name = m;
     }
 
     public void setEcts (String e) {
         this.ects = e;
     }
 
-    public void setCijfer(String k){
-        this.cijfer = k;
+    public void setGrade(String k){
+        this.grade = k;
     }
 
-    public void setPeriode(String p) { this.periode = p;}
+    public void setPeriod(String p) { this.period = p;}
 
-    public String getModulecode(){
-        return modulecode;
+    public String getName(){
+        return name;
     }
 
     public String getEcts(){
         return ects;
     }
 
-    public String getCijfer(){
-        return cijfer;
+    public String getGrade(){
+        return grade;
     }
 
-    public String getPeriode() { return periode;}
+    public String getPeriod() { return period;}
 
     @Override
     public String toString() {
-        return "CourseTable [modulecode=" + modulecode + ", ects=" + ects + ", cijfer=" + cijfer+ ", periode=" + periode + "]";
+        return "CourseTable [modulecode=" + name + ", ects=" + ects + ", cijfer=" + grade+ ", periode=" + period + "]";
     }
 
 }

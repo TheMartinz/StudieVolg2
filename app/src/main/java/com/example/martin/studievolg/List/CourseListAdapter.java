@@ -46,8 +46,8 @@ public class CourseListAdapter extends ArrayAdapter<Course> {
             vh = (ViewHolder) convertView.getTag();
         }
         Course cm = getItem(position);
-        vh.name.setText(cm.getModulecode());
-        vh.code.setText(cm.getCijfer());
+        vh.name.setText(cm.name);
+        vh.code.setText(cm.grade);
         return convertView;
     }
 

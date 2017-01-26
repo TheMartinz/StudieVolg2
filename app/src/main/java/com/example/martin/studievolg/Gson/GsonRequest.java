@@ -19,55 +19,48 @@ import java.util.Map;
  */
 
 public class GsonRequest<T> extends Request<T> {
-    private final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+    private final Gson gson = new Gson();
     private final Class<T> mClazz;
     private final Map<String, String> headers;
     private final Response.Listener<T> listener;
-    private final java.lang.reflect.Type mType;
+    private final Type mType;
     private final String TAG = "GsonRequest<T>";
 
     /** Make a GET request and return a parsed object from JSON.
      * @param url URL of the request to make
      * @param clazz Relevant class object, for Gson's reflection
      * @param headers Map of request headers     */
-
     public GsonRequest(String url, Class<T> clazz, Map<String, String> headers,
                        Response.Listener<T> listener, Response.ErrorListener errorListener) {
         super(Method.GET, url, errorListener);
-        this.mClazz = clazz;          this.mType = null;
-        this.headers = headers;        this.listener = listener;
-    }
-    // Add this constructor : (replace Class<T>  with Type ) (Zodat we een lijst met types terug kunnen krijgen i.p.v. 1 class )
-    public GsonRequest(String url, Type type, Map<String, String> headers,
-                       Response.Listener<T> listener, Response.ErrorListener errorListener) {
-        super(Method.GET, url, errorListener);
-        this.mClazz = null;
-        this.mType = type;
+        this.mClazz = clazz;
+        this.mType = null;
         this.headers = headers;
         this.listener = listener;
     }
-    // Continued from previous slide
-
-    @Override
+    public GsonRequest(String url, Type type, Map<String, String> headers,
+                       Response.Listener<T> listener, Response.ErrorListener errorListener) {
+        super(Method.GET, url, errorListener);
+        this.mClazz = null;         this.mType = type;
+        this.headers = headers;     this.listener = listener;
+    }
     public Map<String, String> getHeaders() throws AuthFailureError {
         return headers != null ? headers : super.getHeaders();
     }
+    protected void deliverResponse(T response) {       listener.onResponse(response);   }
 
-    @Override
-    protected void deliverResponse(T response) {
-        listener.onResponse(response);
-    }
-
-    @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
-            if (this.mClazz != null) {
+            String json = new String(
+                    response.data,
+                    HttpHeaderParser.parseCharset(response.headers));
+            if (mClazz != null) {
                 return Response.success(
-                        this.gson.fromJson(new String(response.data, HttpHeaderParser.parseCharset(response.headers)), this.mClazz),
+                        gson.fromJson(json, mClazz),
                         HttpHeaderParser.parseCacheHeaders(response));
             } else {
                 return (Response<T>) Response.success(
-                        this.gson.fromJson(new String(response.data, HttpHeaderParser.parseCharset(response.headers)), this.mType),
+                        gson.fromJson(json, mType),
                         HttpHeaderParser.parseCacheHeaders(response));
             }
         } catch (UnsupportedEncodingException e) {
@@ -75,5 +68,5 @@ public class GsonRequest<T> extends Request<T> {
         } catch (JsonSyntaxException e) {
             return Response.error(new ParseError(e));
         }
-    }// end parseNetwResp
-} // end class
+    }
+}

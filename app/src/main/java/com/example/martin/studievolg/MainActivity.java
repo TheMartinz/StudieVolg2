@@ -24,7 +24,11 @@ public class MainActivity extends AppCompatActivity {
         page_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prefLogin();
+                SharedPreferences SPlogin = getSharedPreferences("login", MODE_PRIVATE);
+                SharedPreferences.Editor loginSPedit = SPlogin.edit();
+                loginSPedit.putString("login", "Correct");
+                loginSPedit.commit();
+
                 String username = edittextnaam.getText().toString();
                 SharedPreferences SPusername = getSharedPreferences("username", MODE_PRIVATE);
                 SharedPreferences.Editor usernameSPedit = SPusername.edit();
@@ -35,16 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this, FirstActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });
         
     }
 
-    private void prefLogin() {
-        SharedPreferences SPlogin = getSharedPreferences("login", MODE_PRIVATE);
-        SharedPreferences.Editor loginSPedit = SPlogin.edit();
-        loginSPedit.putString("login", "Correct");
-        loginSPedit.commit();
-    }
 }
