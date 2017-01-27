@@ -10,6 +10,5 @@
         android:selectAllOnFocus="true"
         android:hint="@string/cijferInvoer"
         android:ems="10"
-        android:elevation="24dp"
         android:id="@+id/editText" />
 </LinearLayout>

@@ -33,8 +33,7 @@ public class FirstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-        String s = getIntent().getStringExtra("SIGNED_IN");
-        Log.d(TAG, s);
+
         DatabaseHelper dbHelper = DatabaseHelper.getHelper(getApplicationContext());
         dbHelper.open();
 

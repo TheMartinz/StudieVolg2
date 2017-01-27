@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String s = getIntent().getStringExtra("SIGNED_IN");
-        Log.d(TAG, s);
 
 
         Button page_1 = (Button) findViewById(R.id.button1);
@@ -43,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getString(R.string.hallo) + username, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(MainActivity.this, FirstActivity.class);
+
                 startActivity(intent);
                 finish();
 

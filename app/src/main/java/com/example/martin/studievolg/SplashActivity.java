@@ -49,11 +49,10 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 if (loggedin.equals(getString(R.string.loggedinText))) {
                     Intent intent = new Intent(SplashActivity.this, FirstActivity.class);
-                    intent.putExtra("SIGNED_IN", "Yes");
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    intent.putExtra("SIGNED_IN", "No");
+
                     startActivity(intent);
                 }
                 finish();
