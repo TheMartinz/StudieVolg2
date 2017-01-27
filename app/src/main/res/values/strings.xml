@@ -24,7 +24,7 @@
     <string name="hallo">Hallo </string>
     <string name="naam">Voer je naam in</string>
     <string name="cijferInvoer">Voer je cijfer in</string>
-
+    <string name="welcomeText">Dit is mijn app!</string>
 
 
 </resources>

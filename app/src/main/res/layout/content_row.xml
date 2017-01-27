@@ -21,7 +21,6 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
-        android:layout_alignTop="@+id/periode"
         android:layout_alignParentStart="true" />
 
 
