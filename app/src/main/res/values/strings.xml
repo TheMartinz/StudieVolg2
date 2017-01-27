@@ -8,5 +8,23 @@
     <string name="Modulecode">Modulecode</string>
     <string name="ECTS">ECTS</string>
     <string name="Cijfer">Cijfer</string>
+    <string name="nieuwCijfer">"nieuw cijfer voor: "</string>
+    <string name="foutiefCijfer">Dat is geen geldig cijfer!</string>
+    <string name="voldoende">Voldoende</string>
+    <string name="onvoldoende">Onvoldoende</string>
+    <string name="loggedinText">Correct</string>
+    <string name="jSon">https://www.mverhaagen.nl/subject_lijst.json</string>
+    <string name="downloadOk">"Succesvol opgehaald: "</string>
+    <string name="downloadFailed">Failed!</string>
+    <string name="cijferStandaard">default</string>
+    <string name="courseLoaded">Loaded Courses into database</string>
+    <string name="jsonError">"cant pull json: "</string>
+    <string name="chartNogtehalen">Nog te halen ECTS</string>
+    <string name="verkregenEcts">Behaalde ECTS</string>
+    <string name="hallo">Hallo </string>
+    <string name="naam">Voer je naam in</string>
+    <string name="cijferInvoer">Voer je cijfer in</string>
+
+
 
 </resources>

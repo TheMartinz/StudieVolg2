@@ -40,14 +40,14 @@ public class SplashActivity extends AppCompatActivity {
 
         final String loggedin = pullSharedPref();
 
-        if (!loggedin.equals("Correct")) {
+        if (!loggedin.equals(getString(R.string.loggedinText))) {
             requestSubjects();
         }
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (loggedin.equals("Correct")) {
+                if (loggedin.equals(getString(R.string.loggedinText))) {
                     Intent intent = new Intent(SplashActivity.this, FirstActivity.class);
                     startActivity(intent);
                 } else {
@@ -63,19 +63,19 @@ public class SplashActivity extends AppCompatActivity {
         Type type = new TypeToken<List<Course>>(){}.getType();
 
         GsonRequest<List<Course>> request = new GsonRequest<List<Course>>(
-                "http://fuujokan.nl/subject_lijst.json", type, null,
+                getString(R.string.jSon), type, null,
                 new Response.Listener<List<Course>>() {
                     @Override
                     public void onResponse(List<Course> response) {
                     String test = response.toString();
-                    Log.d("Succesvol opgehaald: ", test);
+                    Log.d(getString(R.string.downloadOk), test);
                     processRequestSucces(response);
             }
         }, new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error){
                 processRequestError(error);
-                Log.d("Failed!", "helaas!");
+                Log.d(getString(R.string.downloadFailed), "helaas!");
             }
         });
         VolleyHelper.getInstance(this).addToRequestQueue(request);
@@ -86,18 +86,10 @@ public class SplashActivity extends AppCompatActivity {
         DatabaseHelper dbHelper = DatabaseHelper.getHelper(this);
 
         List<String> listedCourseArray = new ArrayList<String>();
-
-        /* FETCHER FOR ALL ITEMS */
-        // Set the cursor (items fetcher)
         Cursor rsCourse = dbHelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, null, null, null, null, null);
-
-        // Get the amount of return
         String array[] = new String[rsCourse.getCount()];
         int j = 0;
-
         rsCourse.moveToFirst();
-
-        // For all the items we get in the return
         while (!rsCourse.isAfterLast()) {
             String name = rsCourse.getString(rsCourse.getColumnIndex("name"));
             listedCourseArray.add(name);
@@ -106,34 +98,24 @@ public class SplashActivity extends AppCompatActivity {
         }
 
         rsCourse.moveToFirst();
-        /* END FETCHER FOR ALL ITEMS */
-
-        // iterate via "for loop"
         for (int i = 0; i < subjects.size(); i++) {
-            //DE NAAM, ECTS, CIJFER EN DE PERIODE  PER COURSE UIT DE DATABASE OPHALEN
             String name = String.valueOf(subjects.get(i).getName());
             String ects = String.valueOf(subjects.get(i).getEcts());
-            String grade = "default";
+            String grade = getString(R.string.cijferStandaard);
             String period = String.valueOf(subjects.get(i).getPeriod());
 
-
-            // Now check if this id already exists in the array
             if (listedCourseArray.contains(name)) {
-                // true
-            } else {
 
-                // Set values to insert into the database
+            } else {
                 ContentValues values = new ContentValues();
                 values.put(DatabaseInfo.CourseColumn.NAME, name);
                 values.put(DatabaseInfo.CourseColumn.PERIOD, period);
                 values.put(DatabaseInfo.CourseColumn.GRADE, grade);
                 values.put(DatabaseInfo.CourseColumn.ECTS, ects);
-
-                // The insert itself by the dbhelper
                 dbHelper.insert(DatabaseInfo.CourseTables.COURSETABLE, null, values);
             }
         }
-        Toast.makeText(getApplicationContext(), "Loaded Courses into database", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), R.string.courseLoaded, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -147,7 +129,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void processRequestError(VolleyError error){
-        Log.d("cant pull json: ", "check je code");
+        Log.d(getString(R.string.jsonError), "check je code");
     }
 
 

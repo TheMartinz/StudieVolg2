@@ -113,8 +113,8 @@ public class SecondActivity extends AppCompatActivity {
 
 
         List<PieEntry> waardes = new ArrayList<>();
-        waardes.add(new PieEntry(ects, "Behaalde ECTS"));
-        waardes.add(new PieEntry(60 - behaaldeEcts, "Nog te halen ECTS"));
+        waardes.add(new PieEntry(ects, getString(R.string.verkregenEcts)));
+        waardes.add(new PieEntry(60 - behaaldeEcts, getString(R.string.chartNogtehalen)));
 
         PieDataSet set = new PieDataSet(waardes, "");
         PieData data = new PieData(set);

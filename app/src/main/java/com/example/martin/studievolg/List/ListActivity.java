@@ -38,9 +38,7 @@ public class ListActivity extends AppCompatActivity {
         CourseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                //Getting the course name
                 String value = CourseLijst.get(position).getName();
-
                 FragmentManager manager = getFragmentManager();
                 EditCijfer fragment = new EditCijfer();
                 Bundle args = new Bundle();
@@ -53,24 +51,16 @@ public class ListActivity extends AppCompatActivity {
 
         DatabaseHelper dbHelper = DatabaseHelper.getHelper(getApplicationContext());
         dbHelper.open();
-
-        // Set the cursor (items fetcher)
         Cursor rsCourse = dbHelper.query(DatabaseInfo.CourseTables.COURSETABLE, new String[]{"*"}, null, null, null, null,  DatabaseInfo.CourseColumn.PERIOD + " DESC");
-
-        // Get the amount of return
         String array[] = new String[rsCourse.getCount()];
         int i = 0;
-
         rsCourse.moveToFirst();
-
-        // For all the items we get in the return
         while (!rsCourse.isAfterLast()) {
             String name = rsCourse.getString(rsCourse.getColumnIndex("name"));
             String ects = rsCourse.getString(rsCourse.getColumnIndex("ects"));
             String grade = rsCourse.getString(rsCourse.getColumnIndex("grade"));
             String period = rsCourse.getString(rsCourse.getColumnIndex("period"));
 
-            // Add to the listview
             CourseLijst.add(new Course(name, ects, grade, period));
             array[i] = rsCourse.getString(0);
             i++;

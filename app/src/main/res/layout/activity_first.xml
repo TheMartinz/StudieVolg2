@@ -10,14 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.martin.studievolg.FirstActivity">
 
-    <Button
-        android:text="Weergave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
-        android:layout_alignStart="@+id/button3"
-        android:id="@+id/button2" />
-
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
@@ -27,22 +19,39 @@
         android:layout_marginTop="15dp"
         android:id="@+id/textView2" />
 
-    <Button
-        android:text="Modules"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp">
+
+        <Button
+            android:text="Modules"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button3"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:text="Taart diagram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button3"
+            android:layout_alignStart="@+id/button3"
+            android:id="@+id/button2" />
+    </LinearLayout>
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="13dp"
-        android:id="@+id/textView3" />
+        android:layout_marginTop="11dp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
 
 </RelativeLayout>

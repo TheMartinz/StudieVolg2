@@ -23,7 +23,7 @@ public class EditCijfer extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("grade:");
+        builder.setTitle("Voer cijfer in:");
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
@@ -38,35 +38,16 @@ public class EditCijfer extends DialogFragment {
                         EditText editText = (EditText) getDialog().findViewById(R.id.editText);
                         String cijfer = editText.getText().toString();
                         if(Double.parseDouble(cijfer) > 10) {
-                            Toast.makeText(getActivity(), "Dat is geen geldig cijfer!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.foutiefCijfer, Toast.LENGTH_SHORT).show();
                         }
                         else if(Double.parseDouble(cijfer) > 5.4 && Double.parseDouble(cijfer) < 10) {
-                            Toast.makeText(getActivity(), "Voldoende", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.voldoende, Toast.LENGTH_SHORT).show();
                             cijferInvoeren(cijfer);
                         }
                         else if(Double.parseDouble(cijfer) < 5.5 && Double.parseDouble(cijfer) < 10) {
-                            Toast.makeText(getActivity(), "Onvoldoende", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.onvoldoende, Toast.LENGTH_SHORT).show();
                             cijferInvoeren(cijfer);
                         }
-                        /*else {
-                            if (cijfer.length() == 0) {
-                                Toast.makeText(getActivity(), "fout", Toast.LENGTH_SHORT).show();
-                            } else if (cijfer.length() == 1) {
-                                cijferInvoeren(cijfer);
-                            } else if (cijfer.length() == 2) {
-                                if (cijfer.equals("10")) {
-                                    cijferInvoeren(cijfer);
-                                } else {
-                                    Toast.makeText(getActivity(), "fout", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                if (cijfer.indexOf(".") > 0) {
-                                    cijferInvoeren(cijfer);
-                                } else {
-                                    Toast.makeText(getActivity(), "fout", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }*/
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -90,7 +71,7 @@ public class EditCijfer extends DialogFragment {
         ContentValues newValues = new ContentValues();
         newValues.put("grade", cijfer);
         dbHelper.update(DatabaseInfo.CourseTables.COURSETABLE, newValues, "name=?", new String[]{course});
-        String message = "nieuw cijfer voor: " + course;
+        String message = getString(R.string.nieuwCijfer) + course;
         showMessage(message);
         restartActivity();
     }

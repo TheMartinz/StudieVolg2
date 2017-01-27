@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 usernameSPedit.putString("username", username);
                 usernameSPedit.commit();
 
-                Toast.makeText(getApplicationContext(), "hallo " + username, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.hallo) + username, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(MainActivity.this, FirstActivity.class);
                 startActivity(intent);
