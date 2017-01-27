@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
+        android:id="@+id/subject_code"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/subject_name" />
+        android:text="New Text"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
+        android:id="@+id/subject_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/subject_code" />
-</LinearLayout>
+        android:text="New Text"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignTop="@+id/periode"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>
