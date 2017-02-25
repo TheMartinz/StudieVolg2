@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.text.NumberFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.martin.studievolg.Database.DatabaseHelper;
 import com.example.martin.studievolg.Database.DatabaseInfo;
+
+import java.util.Locale;
 
 /**
  * Created by Martin on 26-1-2017.
@@ -37,6 +40,7 @@ public class EditCijfer extends DialogFragment {
 
                         EditText editText = (EditText) getDialog().findViewById(R.id.editText);
                         String cijfer = editText.getText().toString();
+                        cijfer = cijfer.replace(",", ".");
                         if(Double.parseDouble(cijfer) > 10) {
                             Toast.makeText(getActivity(), R.string.foutiefCijfer, Toast.LENGTH_SHORT).show();
                         }

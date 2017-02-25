@@ -54,6 +54,16 @@ public class FirstActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button weergave2 = (Button) findViewById(R.id.weergave2);
+        weergave2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this, BarActivity.class);
+                startActivity(intent);
+            }
+        });
+
         TextView gebruikersnaam = (TextView) findViewById(R.id.textView2);
 
         SharedPreferences sharedpref = getSharedPreferences("username", Context.MODE_PRIVATE);

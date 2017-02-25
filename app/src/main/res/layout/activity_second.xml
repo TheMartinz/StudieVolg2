@@ -12,7 +12,8 @@
     <com.github.mikephil.charting.charts.PieChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/idpiechart">
+        android:id="@+id/idpiechart"
+        android:contentDescription="Pie Chart">
     </com.github.mikephil.charting.charts.PieChart>
 
 
