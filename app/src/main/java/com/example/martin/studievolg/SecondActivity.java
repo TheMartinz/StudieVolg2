@@ -106,9 +106,21 @@ public class SecondActivity extends AppCompatActivity {
     private void setData(int ects) {
         behaaldeEcts = ects;
 
+        //  http://www.materialui.co/colors
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.GREEN);
-        colors.add(Color.MAGENTA);
+        if (behaaldeEcts <10) {
+        colors.add(Color.rgb(244,81,30));
+        }
+        else if (behaaldeEcts < 40){
+        colors.add(Color.rgb(235,0,0));
+        }
+        else if  (behaaldeEcts < 50) {
+            colors.add(Color.rgb(253,216,53));
+        }
+        else {
+            colors.add(Color.rgb(67,160,71));
+        }
+        colors.add(Color.rgb(255,0,0));
 
 
 
